@@ -1,0 +1,16 @@
+# Directories
+.idea/
+.settings/
+out/
+target/
+build/
+
+# Files
+*.iml
+*.iws
+*.ipr
+*.ids
+*.jar
+.project
+.classpath
+.DS_Store

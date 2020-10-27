@@ -1,0 +1,9 @@
+server:
+  port: 7701
+  error:
+    include-stacktrace: "${SERVER_ERROR_INCLUDE_STACKTRACE:ALWAYS}" # 'NEVER', 'ALWAYS', 'ON_TRACE_PARAM'
+logging:
+  pattern.console: '%d{HH:mm:ss.SSS} [%thread] %-5level %logger.%method\(line:%line\) - %msg%n'
+  level:
+    ROOT: 'ERROR' # 'TRACE', 'DEBUG', 'INFO', 'WARN', 'ERROR', 'FATAL', 'OFF'
+    com.fetchrewards.server: 'TRACE'
