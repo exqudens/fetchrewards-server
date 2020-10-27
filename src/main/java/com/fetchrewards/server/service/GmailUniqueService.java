@@ -1,38 +1,28 @@
 package com.fetchrewards.server.service;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EmailService {
+@Qualifier("GmailUniqueService")
+public class GmailUniqueService extends StringUniqueServiceBase {
 
-  public Integer uniqueCount(List<String> emails) {
-    Map<String, Integer> map = new HashMap<>();
-
-    for (String email : emails) {
-      String matchingEmail = toMatchingEmail(email);
-      map.merge(matchingEmail, 1, Integer::sum);
-    }
-
-    return map.size();
-  }
-
-  String toMatchingEmail(String target) {
+  @Override
+  protected String filter(String email) {
     String delimiter = "@";
 
     List<String> parts = Collections
-        .list(new StringTokenizer(target, delimiter))
+        .list(new StringTokenizer(email, delimiter))
         .stream()
         .map(Object::toString)
         .collect(Collectors.toList());
 
     if (parts.size() == 1) {
-      return target;
+      return email;
     }
 
     String withOutDot = parts.get(0).replace(".", "");

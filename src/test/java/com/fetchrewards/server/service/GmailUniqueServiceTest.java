@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 @TestMethodOrder(OrderAnnotation.class)
-public class EmailServiceTest {
+public class GmailUniqueServiceTest {
 
   @Test
   @Order(1)
@@ -22,8 +22,8 @@ public class EmailServiceTest {
         "test.email@fetchrewards.com"
     );
 
-    EmailService emailService = new EmailService();
-    Integer uniqueCount = emailService.uniqueCount(emails);
+    GmailUniqueService service = new GmailUniqueService();
+    Integer uniqueCount = service.count(emails);
 
     Assertions.assertEquals(2, uniqueCount);
   }
@@ -34,7 +34,7 @@ public class EmailServiceTest {
 
     Assertions.assertEquals(
         "testemail@gmail.com",
-        new EmailService().toMatchingEmail("test.email+spam@gmail.com")
+        new GmailUniqueService().filter("test.email+spam@gmail.com")
     );
   }
 
